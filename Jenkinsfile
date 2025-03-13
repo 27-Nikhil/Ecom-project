@@ -24,7 +24,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                    sh "/usr/local/bin/docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
@@ -32,9 +32,9 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh "docker stop ${DOCKER_IMAGE} || true"
-                    sh "docker rm ${DOCKER_IMAGE} || true"
-                    sh "docker run -d --name ${DOCKER_IMAGE} -p 8080:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "/usr/local/bin/docker stop ${DOCKER_IMAGE} || true"
+                    sh "/usr/local/bin/docker rm ${DOCKER_IMAGE} || true"
+                    sh "/usr/local/bin/docker run -d --name ${DOCKER_IMAGE} -p 8080:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
