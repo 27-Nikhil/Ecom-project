@@ -48,4 +48,7 @@ pipeline {
             echo "Deployment Failed ❌"
         }
     }
+    tools {
+        maven 'Maven_3'
+    }
 }
