@@ -24,7 +24,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${ecom-proj}:${latest} ."
+                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
@@ -32,9 +32,9 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh "docker stop ${ecom-proj} || true"
-                    sh "docker rm ${ecom-proj} || true"
-                    sh "docker run -d --name ${ecom-proj} -p 8080:8080 ${ecom-proj}:${latest}"
+                    sh "docker stop ${DOCKER_IMAGE} || true"
+                    sh "docker rm ${DOCKER_IMAGE} || true"
+                    sh "docker run -d --name ${DOCKER_IMAGE} -p 8080:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
