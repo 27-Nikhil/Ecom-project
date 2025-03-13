@@ -16,7 +16,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 script {
-                    sh 'mvn clean package'
+                    sh '/usr/local/bin/mvn  clean package'
                 }
             }
         }
